@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+@theme {
+  --color-base: var(--base);
+  --color-surface: var(--surface);
+  --color-accent: #0066ff;
+  --color-accent-glow: #3b82f6;
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-border-subtle: var(--border-subtle);
+  --color-dark-bg: var(--dark-bg);
+
+  --font-syne: var(--font-syne);
+  --font-dm-sans: var(--font-dm-sans);
+  --font-jetbrains: var(--font-jetbrains-mono);
+}
+
+:root {
+  --base: #fafafa;
+  --surface: #ffffff;
+  --text-primary: #0a0a0a;
+  --text-secondary: #555555;
+  --border-subtle: #e8e8e8;
+  --dark-bg: #0a0f1e;
+
+  --background: var(--base);
+  --foreground: var(--text-primary);
+}
+
+.dark {
+  --base: #0a0f1e;
+  --surface: #111827;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --border-subtle: #1f2937;
+  --dark-bg: #030712;
+}
+
+.dark .mix-blend-multiply {
+  mix-blend-mode: screen;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Smooth transition for all elements when theme changes */
+*,
+*::before,
+*::after {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease,
+    fill 0.3s ease, stroke 0.3s ease;
+}
+
+/* Custom Utilities */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .bg-grid-pattern {
+    background-image: radial-gradient(
+      var(--color-border-subtle) 1px,
+      transparent 1px
+    );
+    background-size: 24px 24px;
+  }
+  .bg-grid-pattern-dark {
+    background-image: radial-gradient(
+      rgba(255, 255, 255, 0.1) 1px,
+      transparent 1px
+    );
+    background-size: 24px 24px;
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-20px) scale(1.05);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
