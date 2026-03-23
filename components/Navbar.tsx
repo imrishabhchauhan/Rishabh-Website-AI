@@ -44,9 +44,10 @@ export default function Navbar() {
   const navLinks = [
     { name: "About", href: "#about" },
     { name: "Services", href: "#services" },
-    { name: "Work", href: "#work" },
+    { name: "Work", href: "#programs" },
     { name: "Tools", href: "#tools" },
     { name: "Blog", href: "#blog" },
+    { name: "Resume", href: "/Rishabh_Chauhan_Resume.pdf", isDownload: true },
     { name: "Contact", href: "#contact" },
   ];
 
@@ -77,7 +78,12 @@ export default function Navbar() {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="text-sm font-medium text-text-secondary hover:text-accent transition-colors"
+                  {...(link.isDownload ? { download: true, target: "_blank" } : {})}
+                  className={
+                    link.isDownload
+                      ? "text-xs font-medium text-accent border border-accent px-3 py-1.5 rounded-full hover:bg-accent hover:text-white transition-colors"
+                      : "text-sm font-medium text-text-secondary hover:text-accent transition-colors"
+                  }
                 >
                   {link.name}
                 </Link>
@@ -181,7 +187,12 @@ export default function Navbar() {
                   <Link
                     href={link.href}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="font-syne text-3xl font-bold text-text-primary hover:text-accent transition-colors block"
+                    {...(link.isDownload ? { download: true, target: "_blank" } : {})}
+                    className={
+                      link.isDownload
+                        ? "inline-block font-syne text-2xl font-bold text-accent border-2 border-accent px-6 py-2 rounded-full hover:bg-accent hover:text-white transition-colors"
+                        : "font-syne text-3xl font-bold text-text-primary hover:text-accent transition-colors block"
+                    }
                   >
                     {link.name}
                   </Link>

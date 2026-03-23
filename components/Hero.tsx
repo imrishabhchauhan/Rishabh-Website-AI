@@ -124,6 +124,22 @@ export default function Hero() {
               View My Work
             </Link>
           </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+            className="mt-6"
+          >
+            <a
+              href="/Rishabh_Chauhan_Resume.pdf"
+              download
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-medium border-2 border-accent text-accent hover:bg-accent hover:text-white transition-all hover:-translate-y-1"
+            >
+              <ArrowDown size={20} />
+              Download Resume
+            </a>
+          </motion.div>
         </div>
 
         {/* Right Content / Decorative */}

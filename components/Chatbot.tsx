@@ -152,7 +152,7 @@ export default function Chatbot() {
                 <div className="flex justify-start">
                   <div className="bg-white text-gray-800 border border-gray-200 p-3 rounded-2xl rounded-tl-none flex items-center gap-2">
                     <Loader2 size={14} className="animate-spin text-accent" />
-                    <span className="font-jetbrains text-xs">Thinking...</span>
+                    <span className="font-jetbrains text-xs">Typing...</span>
                   </div>
                 </div>
               )}

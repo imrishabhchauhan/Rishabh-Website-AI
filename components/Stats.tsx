@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView, useSpring, useTransform } from "motion/react";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 
 function Counter({ value, suffix = "" }: { value: number; suffix?: string }) {
   const ref = useRef<HTMLSpanElement>(null);
@@ -14,7 +14,7 @@ function Counter({ value, suffix = "" }: { value: number; suffix?: string }) {
 
   const display = useTransform(
     spring,
-    (current) => Math.floor(current).toString() + suffix,
+    (current) => Math.floor(current).toLocaleString() + suffix,
   );
 
   useEffect(() => {
@@ -27,6 +27,31 @@ function Counter({ value, suffix = "" }: { value: number; suffix?: string }) {
 }
 
 export default function Stats() {
+  const [visitorCount, setVisitorCount] = useState<number | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchVisitors = async () => {
+      try {
+        const res = await fetch("/api/visitors");
+        if (res.ok) {
+          const data = await res.json();
+          if (data.count !== null) {
+            setVisitorCount(data.count);
+            return;
+          }
+        }
+        setVisitorCount(1000); // Fallback
+      } catch (error) {
+        setVisitorCount(1000); // Fallback
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchVisitors();
+  }, []);
+
   const stats = [
     { value: 2, suffix: "M+", label: "Article Views" },
     { value: 1000, suffix: "+", label: "People Trained" },
@@ -37,7 +62,7 @@ export default function Stats() {
   return (
     <section className="bg-dark-bg text-white py-16 relative z-20">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-0 divide-y md:divide-y-0 md:divide-x divide-white/10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-0 divide-y md:divide-y-0 md:divide-x divide-white/10">
           {stats.map((stat, index) => (
             <motion.div
               key={index}
@@ -55,6 +80,29 @@ export default function Stats() {
               </span>
             </motion.div>
           ))}
+          
+          {/* Live Visitor Counter */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.5, delay: stats.length * 0.1 }}
+            className="flex flex-col items-center justify-center py-6 lg:py-0 px-4 text-center"
+          >
+            <span className="font-jetbrains text-4xl md:text-5xl font-bold text-white mb-2 tracking-tighter flex items-center justify-center min-h-[48px] md:min-h-[60px]">
+              {isLoading ? (
+                <div className="h-10 w-24 bg-white/10 animate-pulse rounded-md" />
+              ) : (
+                <Counter 
+                  value={visitorCount || 1000} 
+                  suffix={visitorCount === 1000 ? "+" : ""} 
+                />
+              )}
+            </span>
+            <span className="font-dm-sans text-sm text-white/60 uppercase tracking-wider font-medium">
+              Website Visitors
+            </span>
+          </motion.div>
         </div>
       </div>
     </section>
