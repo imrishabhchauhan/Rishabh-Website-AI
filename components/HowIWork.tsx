@@ -7,27 +7,27 @@ const steps = [
   {
     icon: "🔍",
     title: "Discover",
-    description: "Understand the problem, the goal, and the gap. No assumptions."
+    description: "Analyze the problem, the goal, and the gap. We make no assumptions."
   },
   {
     icon: "🧠",
     title: "Strategize",
-    description: "Map the solution architecture before touching any tool."
+    description: "Design the solution architecture before touching any tool."
   },
   {
     icon: "⚙️",
     title: "Build",
-    description: "Execute with the right stack — AI, automation, or content systems."
+    description: "Deploy the right stack for your needs, including AI, automation, or content systems."
   },
   {
     icon: "🧪",
     title: "Test & Refine",
-    description: "Break it intentionally. Fix it. Optimize until it holds."
+    description: "Break the system on purpose. We fix the weak points and optimize until it holds."
   },
   {
     icon: "🚀",
     title: "Deliver",
-    description: "Hand off with documentation. Clean, complete, repeatable."
+    description: "Hand off the final product with clear documentation. You get a clean, complete, and repeatable system."
   }
 ];
 

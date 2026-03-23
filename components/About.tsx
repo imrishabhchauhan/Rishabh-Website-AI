@@ -64,38 +64,19 @@ export default function About() {
             </div>
 
             <h2 className="font-syne text-4xl md:text-5xl font-bold text-text-primary mb-8 leading-tight">
-              I Don&apos;t Just Use AI. <br className="hidden md:block" />
-              <span className="text-text-secondary">I Build With It.</span>
+              I Build With AI. <br className="hidden md:block" />
+              <span className="text-text-secondary">Most People Just Use It.</span>
             </h2>
 
             <div className="space-y-6 text-lg text-text-secondary font-dm-sans leading-relaxed mb-12">
               <p>
-                My journey started at 15 as a freelance tech writer. By 2021, I
-                was a Staff Writer at MakeUseOf (MUO), where my articles hit
-                over{" "}
-                <strong className="text-text-primary font-medium">
-                  2 million views
-                </strong>
-                . I learned early on how to communicate complex technical
-                concepts to massive audiences.
+                I started freelancing at age 15. Since then, my writing has reached two million readers.
               </p>
               <p>
-                As AI began reshaping the digital landscape, I transitioned from
-                writing about tech to building with it. I&apos;ve trained over{" "}
-                <strong className="text-text-primary font-medium">
-                  1,000+ people
-                </strong>{" "}
-                on AI tools, digital marketing, and web development, helping
-                them leverage technology to work smarter.
+                Now, I design N8N automations and AI workflows. I have trained over a thousand professionals to do the same.
               </p>
               <p>
-                Today, I operate at the intersection of AI, marketing, and
-                systems thinking. Whether it&apos;s designing complex N8N
-                automations, crafting SEO-driven content strategies, or building
-                SaaS applications, my goal is simple:{" "}
-                <strong className="text-text-primary font-medium">
-                  build systems that compound your efforts.
-                </strong>
+                Today, I merge artificial intelligence with marketing and business systems. I build infrastructure that scales.
               </p>
             </div>
 

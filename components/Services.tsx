@@ -8,7 +8,7 @@ export default function Services() {
     {
       title: "AI Workflow Development",
       description:
-        "End-to-end automation systems built with N8N, Make, and custom LLM integrations. I map, build, and deploy AI workflows that replace repetitive human work.",
+        "Custom N8N and Make workflows integrated with LLMs to replace repetitive human tasks.",
       includes: [
         "Workflow audit",
         "System design",
@@ -22,7 +22,7 @@ export default function Services() {
     {
       title: "Digital Marketing Consulting",
       description:
-        "Strategy-first digital marketing. SEO, social media systems, content pipelines, and campaign architecture — built to compound over time.",
+        "SEO, social media pipelines, and campaign architecture built to compound over time.",
       includes: [
         "Audit",
         "Strategy deck",
@@ -36,7 +36,7 @@ export default function Services() {
     {
       title: "Content Strategy",
       description:
-        "Content systems for founders, educators, and brands entering the AI space. Positioning, content calendar, platform-specific execution.",
+        "Content systems for founders, educators, and brands entering the AI space. We define your positioning and build a scalable content calendar.",
       includes: [
         "Brand voice doc",
         "Content calendar",
@@ -68,7 +68,7 @@ export default function Services() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-lg text-text-secondary font-dm-sans"
           >
-            Focused services. No fluff. Real outcomes.
+            Three services. Each one built around a specific type of problem.
           </motion.p>
         </div>
 

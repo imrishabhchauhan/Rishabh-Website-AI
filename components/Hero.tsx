@@ -97,12 +97,7 @@ export default function Hero() {
             transition={{ duration: 0.5, delay: 0.4 }}
             className="text-lg text-text-secondary max-w-2xl mb-10 leading-relaxed text-balance"
           >
-            I help businesses automate intelligently, market strategically, and
-            scale with AI-powered systems.
-            <span className="text-text-primary font-medium">
-              {" "}
-              7+ years of experience. 2M+ readers. 1000+ people trained.
-            </span>
+            Get automated workflows and scalable marketing systems. Focus on your business while technology handles the rest.
           </motion.p>
 
           <motion.div

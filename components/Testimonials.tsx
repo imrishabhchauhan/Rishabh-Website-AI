@@ -5,6 +5,7 @@ import { Star } from "lucide-react";
 
 export default function Testimonials() {
   // Testimonial content to be replaced by owner
+  /* PLACEHOLDER — Replace with real testimonials before going live */
   const testimonials = [
     {
       quote:

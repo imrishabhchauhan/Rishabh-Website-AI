@@ -199,18 +199,10 @@ export default function SkillMap() {
                 These scores reflect real-world usage depth, not certifications.
               </p>
               <p className="mb-4">
-                While I have a broad understanding of the entire digital landscape,
-                my true expertise lies at the intersection of{" "}
-                <strong className="text-text-primary">AI & Automation</strong> and{" "}
-                <strong className="text-text-primary">Content Strategy</strong>. I
-                don&apos;t just build systems; I build systems that communicate
-                effectively and drive measurable growth.
+                My core strengths sit at the intersection of AI automation and content strategy. I build technical infrastructure that drives measurable growth.
               </p>
               <p>
-                My web development and SaaS product skills provide the technical
-                foundation necessary to deploy these strategies in production
-                environments, ensuring that the ideas don&apos;t just live on paper,
-                but function flawlessly in the real world.
+                Web development and SaaS product skills ensure these systems function in production environments.
               </p>
             </motion.div>
           </div>

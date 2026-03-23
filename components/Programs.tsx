@@ -9,7 +9,7 @@ const programs = [
     title: "AI Tools Mastery Workshop",
     category: "AI",
     tags: ["AI", "Workshop", "200+ Participants"],
-    description: "Hands-on training on Claude, Gemini, ChatGPT, Canva AI, and automation tools for professionals.",
+    description: "Zoom-delivered training on Claude, Gemini, ChatGPT, and automation tools for working professionals.",
     featured: true,
     participants: "200+",
   },
@@ -18,7 +18,7 @@ const programs = [
     title: "Digital Marketing Bootcamp",
     category: "Marketing",
     tags: ["Marketing", "Bootcamp", "300+ Participants"],
-    description: "Full-stack digital marketing training covering SEO, SMM, content, and paid ads.",
+    description: "Intensive bootcamp covering SEO, content, and paid ads for marketing teams.",
     featured: false,
     participants: "300+",
   },
@@ -27,7 +27,7 @@ const programs = [
     title: "Web Development with AI",
     category: "Web",
     tags: ["Web Dev", "Training", "Live Sessions"],
-    description: "Building websites using modern tools + AI-assisted development workflows.",
+    description: "Live sessions on building websites using modern frameworks and AI-assisted development workflows.",
     featured: false,
     participants: "Live",
   },
@@ -36,7 +36,7 @@ const programs = [
     title: "Canva for Professionals",
     category: "Design",
     tags: ["Design", "Workshop", "Corporate"],
-    description: "Advanced Canva training for marketing teams, educators, and content creators.",
+    description: "Advanced Canva design training tailored for corporate marketing teams and educators.",
     featured: false,
     participants: "Corporate",
   },
@@ -45,7 +45,7 @@ const programs = [
     title: "N8N Automation Workshop",
     category: "Automation",
     tags: ["Automation", "N8N", "Advanced"],
-    description: "Building real-world automation workflows using N8N and API integrations.",
+    description: "Hands-on workshop building real-world automation workflows and API integrations using N8N.",
     featured: true,
     participants: "Advanced",
   },
@@ -54,7 +54,7 @@ const programs = [
     title: "Cybersecurity Awareness Program",
     category: "Security",
     tags: ["Security", "Public", "1000+ Reached"],
-    description: "Awareness sessions on cybercrime delivered in partnership with Chandigarh Police.",
+    description: "Public awareness sessions on cybercrime delivered in partnership with Chandigarh Police.",
     featured: false,
     participants: "1000+",
   },
@@ -77,7 +77,7 @@ export default function Programs() {
             Programs I&apos;ve Delivered
           </h2>
           <p className="text-xl text-text-secondary font-medium">
-            1,000+ people trained. These are the programs that did it.
+            1,000+ people trained across these six programs.
           </p>
         </div>
 

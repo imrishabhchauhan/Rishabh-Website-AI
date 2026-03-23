@@ -26,8 +26,7 @@ export default function Contact() {
               <span className="text-accent-glow">Something.</span>
             </h2>
             <p className="text-lg text-white/70 font-dm-sans mb-12 max-w-md">
-              Open for AI projects, consulting engagements, and training
-              partnerships.
+              Available for AI projects, consulting, and training programs.
             </p>
 
             <div className="space-y-8 mb-12">
