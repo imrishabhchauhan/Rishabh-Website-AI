@@ -105,7 +105,7 @@ export default function Chatbot() {
             initial={{ opacity: 0, scale: 0.8, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
-            className="absolute bottom-20 right-0 w-[350px] max-w-[90vw] bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-200 flex flex-col"
+            className="absolute bottom-20 right-0 w-[350px] max-w-[90vw] bg-surface rounded-2xl shadow-2xl overflow-hidden border border-border-subtle flex flex-col"
           >
             {/* Header */}
             <div className="bg-accent p-4 flex items-center justify-between text-white">
@@ -127,7 +127,7 @@ export default function Chatbot() {
             </div>
 
             {/* Messages */}
-            <div className="flex-grow h-[400px] overflow-y-auto p-4 space-y-4 bg-gray-50">
+            <div className="flex-grow h-[400px] overflow-y-auto p-4 space-y-4 bg-base">
               {messages.map((msg, index) => (
                 <div
                   key={index}
@@ -139,7 +139,7 @@ export default function Chatbot() {
                     className={`max-w-[80%] p-3 rounded-2xl font-jetbrains text-xs leading-relaxed ${
                       msg.role === "user"
                         ? "bg-accent text-white rounded-tr-none"
-                        : "bg-white text-gray-800 border border-gray-200 rounded-tl-none"
+                        : "bg-surface text-text-primary border border-border-subtle rounded-tl-none"
                     }`}
                   >
                     <div className="markdown-body">
@@ -150,7 +150,7 @@ export default function Chatbot() {
               ))}
               {isLoading && (
                 <div className="flex justify-start">
-                  <div className="bg-white text-gray-800 border border-gray-200 p-3 rounded-2xl rounded-tl-none flex items-center gap-2">
+                  <div className="bg-surface text-text-primary border border-border-subtle p-3 rounded-2xl rounded-tl-none flex items-center gap-2">
                     <Loader2 size={14} className="animate-spin text-accent" />
                     <span className="font-jetbrains text-xs">Typing...</span>
                   </div>
@@ -160,14 +160,14 @@ export default function Chatbot() {
             </div>
 
             {/* Input */}
-            <div className="p-4 bg-white border-t border-gray-100 flex items-center gap-2">
+            <div className="p-4 bg-surface border-t border-border-subtle flex items-center gap-2">
               <input
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyPress={(e) => e.key === "Enter" && handleSend()}
                 placeholder="Type a message..."
-                className="flex-grow bg-gray-100 border-none rounded-full px-4 py-2 text-sm focus:ring-2 focus:ring-accent outline-none text-gray-800"
+                className="flex-grow bg-base border-none rounded-full px-4 py-2 text-sm focus:ring-2 focus:ring-accent outline-none text-text-primary"
               />
               <button
                 onClick={handleSend}

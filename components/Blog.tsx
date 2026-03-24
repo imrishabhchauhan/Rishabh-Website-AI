@@ -32,8 +32,8 @@ export default function Blog() {
   ];
 
   return (
-    <section id="blog" className="py-24 md:py-32 bg-base">
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
+    <section id="blog" className="py-[60px] md:py-32 bg-base">
+      <div className="max-w-7xl mx-auto px-[20px] md:px-12">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
           <div>
             <motion.h2
@@ -41,7 +41,7 @@ export default function Blog() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.5 }}
-              className="font-syne text-4xl md:text-5xl font-bold text-text-primary mb-4"
+              className="font-syne text-[clamp(2rem,6vw,3rem)] md:text-5xl font-bold text-text-primary mb-4"
             >
               Writing & Insights
             </motion.h2>
@@ -50,7 +50,7 @@ export default function Blog() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-lg text-text-secondary font-dm-sans"
+              className="text-[clamp(1rem,4vw,1.125rem)] md:text-lg text-text-secondary font-dm-sans"
             >
               2M+ readers. Articles on AI, systems, and digital strategy.
             </motion.p>

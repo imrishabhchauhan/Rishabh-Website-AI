@@ -60,9 +60,9 @@ export default function Stats() {
   ];
 
   return (
-    <section className="bg-dark-bg text-white py-16 relative z-20">
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-0 divide-y md:divide-y-0 md:divide-x divide-white/10">
+    <section className="bg-dark-bg text-white py-[60px] md:py-16 relative z-20">
+      <div className="max-w-7xl mx-auto px-[20px] md:px-12">
+        <div className="grid grid-cols-2 lg:grid-cols-5 gap-[1px] bg-[#0066FF]/50 lg:bg-transparent lg:gap-0 lg:divide-x lg:divide-white/10">
           {stats.map((stat, index) => (
             <motion.div
               key={index}
@@ -70,12 +70,12 @@ export default function Stats() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="flex flex-col items-center justify-center py-6 lg:py-0 px-4 text-center"
+              className={`flex flex-col items-center justify-center p-4 lg:py-0 lg:px-4 text-center bg-dark-bg lg:bg-transparent ${index === 4 ? 'col-span-2 lg:col-span-1' : ''}`}
             >
-              <span className="font-jetbrains text-4xl md:text-5xl font-bold text-white mb-2 tracking-tighter">
+              <span className="font-jetbrains text-[clamp(1.8rem,6vw,2.5rem)] md:text-5xl font-bold text-white mb-2 tracking-tighter">
                 <Counter value={stat.value} suffix={stat.suffix} />
               </span>
-              <span className="font-dm-sans text-sm text-white/60 uppercase tracking-wider font-medium">
+              <span className="font-dm-sans text-[0.7rem] md:text-sm text-white/60 uppercase tracking-[0.05em] md:tracking-wider font-medium">
                 {stat.label}
               </span>
             </motion.div>
@@ -87,9 +87,9 @@ export default function Stats() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.5, delay: stats.length * 0.1 }}
-            className="flex flex-col items-center justify-center py-6 lg:py-0 px-4 text-center"
+            className="flex flex-col items-center justify-center p-4 lg:py-0 lg:px-4 text-center bg-dark-bg lg:bg-transparent col-span-2 lg:col-span-1"
           >
-            <span className="font-jetbrains text-4xl md:text-5xl font-bold text-white mb-2 tracking-tighter flex items-center justify-center min-h-[48px] md:min-h-[60px]">
+            <span className="font-jetbrains text-[clamp(1.8rem,6vw,2.5rem)] md:text-5xl font-bold text-white mb-2 tracking-tighter flex items-center justify-center min-h-[48px] md:min-h-[60px]">
               {isLoading ? (
                 <div className="h-10 w-24 bg-white/10 animate-pulse rounded-md" />
               ) : (
@@ -99,7 +99,7 @@ export default function Stats() {
                 />
               )}
             </span>
-            <span className="font-dm-sans text-sm text-white/60 uppercase tracking-wider font-medium">
+            <span className="font-dm-sans text-[0.7rem] md:text-sm text-white/60 uppercase tracking-[0.05em] md:tracking-wider font-medium">
               Website Visitors
             </span>
           </motion.div>

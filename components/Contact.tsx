@@ -7,12 +7,12 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="py-24 md:py-32 bg-dark-bg text-white relative overflow-hidden"
+      className="py-[60px] md:py-32 bg-dark-bg text-white relative overflow-hidden"
     >
       {/* Decorative Grid */}
       <div className="absolute inset-0 bg-grid-pattern-dark opacity-20 pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+      <div className="max-w-7xl mx-auto px-[20px] md:px-12 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
           {/* Left Side */}
           <motion.div
@@ -21,11 +21,11 @@ export default function Contact() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="font-syne text-5xl md:text-6xl font-bold mb-6 leading-tight">
+            <h2 className="font-syne text-[clamp(2.5rem,8vw,4rem)] md:text-6xl font-bold mb-6 leading-tight">
               Let&apos;s Build <br />
               <span className="text-accent-glow">Something.</span>
             </h2>
-            <p className="text-lg text-white/70 font-dm-sans mb-12 max-w-md">
+            <p className="text-[clamp(1rem,4vw,1.125rem)] md:text-lg text-white/70 font-dm-sans mb-12 max-w-md">
               Available for AI projects, consulting, and training programs.
             </p>
 
@@ -167,7 +167,7 @@ export default function Contact() {
                   <textarea
                     id="message"
                     rows={4}
-                    className="w-full bg-base border border-border-subtle rounded-xl px-4 py-3 text-text-primary focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all font-dm-sans resize-none"
+                    className="w-full bg-base border border-border-subtle rounded-xl px-4 py-3 text-text-primary focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all font-dm-sans resize-y min-h-[120px]"
                     placeholder="Tell me about your project..."
                   />
                 </div>

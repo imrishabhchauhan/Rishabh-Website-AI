@@ -44,13 +44,13 @@ export default function SkillMap() {
     .join(" L ")} Z`;
 
   return (
-    <section id="skills" className="py-24 bg-base">
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
+    <section id="skills" className="py-[60px] md:py-32 bg-base">
+      <div className="max-w-7xl mx-auto px-[20px] md:px-12">
         <div className="mb-16">
-          <h2 className="font-syne text-4xl md:text-5xl font-bold text-text-primary mb-4">
+          <h2 className="font-syne text-[clamp(2rem,6vw,3rem)] md:text-5xl font-bold text-text-primary mb-4">
             Skill Map
           </h2>
-          <p className="text-xl text-text-secondary font-medium">
+          <p className="text-[clamp(1rem,4vw,1.25rem)] md:text-xl text-text-secondary font-medium">
             Where I&apos;m strongest — and by how much.
           </p>
         </div>
@@ -58,10 +58,10 @@ export default function SkillMap() {
         <div className="flex flex-col lg:flex-row gap-12 items-center">
           {/* Chart (60%) */}
           <div className="w-full lg:w-[60%] flex justify-center relative">
-            <div className="relative bg-[#FAFAFA] rounded-3xl p-4 md:p-8 shadow-sm w-full max-w-[500px] aspect-square flex items-center justify-center">
+            <div className="relative bg-surface rounded-3xl p-4 md:p-8 shadow-sm w-full max-w-[340px] md:max-w-[500px] mx-auto aspect-square flex items-center justify-center">
               <svg
                 width="100%"
-                height="100%"
+                height="auto"
                 viewBox={`0 0 ${size} ${size}`}
                 className="overflow-visible"
               >
@@ -79,8 +79,9 @@ export default function SkillMap() {
                       key={levelIndex}
                       points={points}
                       fill="none"
-                      stroke="#E8E8E8"
+                      stroke="currentColor"
                       strokeWidth="1"
+                      className="text-border-subtle"
                     />
                   );
                 })}
@@ -95,8 +96,9 @@ export default function SkillMap() {
                       y1={center}
                       x2={x}
                       y2={y}
-                      stroke="#E8E8E8"
+                      stroke="currentColor"
                       strokeWidth="1"
+                      className="text-border-subtle"
                     />
                   );
                 })}
@@ -158,7 +160,7 @@ export default function SkillMap() {
                       y={y}
                       dy={dy}
                       textAnchor={textAnchor}
-                      className="font-dm-sans text-xs md:text-sm font-medium fill-gray-800"
+                      className="font-dm-sans text-xs md:text-sm font-medium fill-text-primary"
                     >
                       {skill.name}
                     </text>
@@ -169,7 +171,7 @@ export default function SkillMap() {
               {/* Tooltip */}
               {hoveredSkill && (
                 <div
-                  className="absolute bg-gray-900 text-white text-xs font-medium px-3 py-2 rounded-lg shadow-xl pointer-events-none transform -translate-x-1/2 -translate-y-full mt-[-10px] z-10"
+                  className="absolute bg-text-primary text-base text-xs font-medium px-3 py-2 rounded-lg shadow-xl pointer-events-none transform -translate-x-1/2 -translate-y-full mt-[-10px] z-10"
                   style={{
                     left: `${(hoveredSkill.x / size) * 100}%`,
                     top: `${(hoveredSkill.y / size) * 100}%`,
@@ -180,29 +182,26 @@ export default function SkillMap() {
                     {hoveredSkill.score}/100
                   </div>
                   {/* Triangle pointer */}
-                  <div className="absolute left-1/2 bottom-0 transform -translate-x-1/2 translate-y-full w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900"></div>
+                  <div className="absolute left-1/2 bottom-0 transform -translate-x-1/2 translate-y-full w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-text-primary"></div>
                 </div>
               )}
             </div>
           </div>
 
           {/* Text (40%) */}
-          <div className="w-full lg:w-[40%]">
+          <div className="w-full lg:w-[40%] mt-6 md:mt-0 text-center md:text-left">
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="prose prose-lg text-text-secondary"
+              className="prose prose-lg text-text-secondary mx-auto md:mx-0"
             >
               <p className="text-xl leading-relaxed text-text-primary mb-6">
                 These scores reflect real-world usage depth, not certifications.
               </p>
               <p className="mb-4">
-                My core strengths sit at the intersection of AI automation and content strategy. I build technical infrastructure that drives measurable growth.
-              </p>
-              <p>
-                Web development and SaaS product skills ensure these systems function in production environments.
+                My strongest areas are AI automation and content strategy. Web development and SaaS skills let me take these systems from concept to production.
               </p>
             </motion.div>
           </div>

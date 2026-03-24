@@ -70,32 +70,37 @@ export default function Programs() {
   );
 
   return (
-    <section id="programs" className="py-24 bg-base">
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
+    <section id="programs" className="py-[60px] md:py-32 bg-base">
+      <div className="max-w-7xl mx-auto px-[20px] md:px-12">
         <div className="text-center mb-16">
-          <h2 className="font-syne text-4xl md:text-5xl font-bold text-text-primary mb-4">
+          <h2 className="font-syne text-[clamp(2rem,6vw,3rem)] md:text-5xl font-bold text-text-primary mb-4">
             Programs I&apos;ve Delivered
           </h2>
-          <p className="text-xl text-text-secondary font-medium">
+          <p className="text-[clamp(1rem,4vw,1.25rem)] md:text-xl text-text-secondary font-medium">
             1,000+ people trained across these six programs.
           </p>
         </div>
 
         {/* Filters */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
-          {filters.map((filter) => (
-            <button
-              key={filter}
-              onClick={() => setActiveFilter(filter)}
-              className={`px-6 py-2 rounded-full font-dm-sans text-sm font-medium transition-all duration-300 ${
-                activeFilter === filter
-                  ? "bg-[#0066FF] text-white shadow-md"
-                  : "bg-white text-text-secondary hover:bg-gray-100 hover:text-text-primary border border-gray-200"
-              }`}
-            >
-              {filter}
-            </button>
-          ))}
+        <div className="relative mb-12 w-full">
+          <div 
+            className="flex md:flex-wrap justify-start md:justify-center gap-3 overflow-x-auto pb-4 md:pb-0 scrollbar-hide [mask-image:linear-gradient(to_right,black_85%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_right,black_85%,transparent_100%)] md:[mask-image:none] md:[-webkit-mask-image:none]"
+            style={{ WebkitOverflowScrolling: 'touch' }}
+          >
+            {filters.map((filter) => (
+              <button
+                key={filter}
+                onClick={() => setActiveFilter(filter)}
+                className={`whitespace-nowrap px-4 py-2 md:px-6 md:py-2 rounded-full font-dm-sans text-sm font-medium transition-all duration-300 flex-shrink-0 ${
+                  activeFilter === filter
+                    ? "bg-[#0066FF] text-white shadow-md"
+                    : "bg-surface text-text-secondary hover:bg-border-subtle hover:text-text-primary border border-border-subtle"
+                }`}
+              >
+                {filter}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Grid */}
@@ -110,7 +115,7 @@ export default function Programs() {
                 transition={{ duration: 0.3 }}
                 key={program.id}
                 data-featured={program.featured}
-                className="group relative bg-white rounded-2xl p-8 shadow-sm border border-gray-100 transition-all duration-300 hover:-translate-y-[6px] hover:shadow-xl border-l-4 border-l-transparent hover:border-l-[#0066FF] flex flex-col h-full"
+                className="group relative bg-surface rounded-2xl p-8 shadow-sm border border-border-subtle transition-all duration-300 hover:-translate-y-[6px] hover:shadow-xl border-l-4 border-l-transparent hover:border-l-[#0066FF] flex flex-col h-full"
               >
                 {/* Featured Badge */}
                 {program.featured && (
@@ -133,7 +138,7 @@ export default function Programs() {
                   </h3>
                   <div className="flex flex-wrap gap-2 mb-4">
                     {program.tags.map((tag, i) => (
-                      <span key={i} className="text-xs font-dm-sans text-gray-500 bg-gray-100 px-2 py-1 rounded-md">
+                      <span key={i} className="text-xs font-dm-sans text-text-secondary bg-border-subtle px-2 py-1 rounded-md">
                         {tag}
                       </span>
                     ))}
@@ -144,10 +149,10 @@ export default function Programs() {
                 </div>
 
                 {/* Bottom: Badge & Button */}
-                <div className="flex items-center justify-between mt-auto pt-6 border-t border-gray-100">
+                <div className="flex items-center justify-between mt-auto pt-6 border-t border-border-subtle">
                   <div className="flex items-center gap-2">
                     <span className="text-xl">👥</span>
-                    <span className="font-dm-sans font-semibold text-gray-700 text-sm">
+                    <span className="font-dm-sans font-semibold text-text-primary text-sm">
                       {program.participants}
                     </span>
                   </div>

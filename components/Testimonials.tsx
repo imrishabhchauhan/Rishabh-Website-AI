@@ -28,15 +28,15 @@ export default function Testimonials() {
   ];
 
   return (
-    <section className="py-24 md:py-32 bg-surface">
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
+    <section className="py-[60px] md:py-32 bg-surface">
+      <div className="max-w-7xl mx-auto px-[20px] md:px-12">
         <div className="mb-16 md:mb-24 text-center">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.5 }}
-            className="font-syne text-4xl md:text-5xl font-bold text-text-primary mb-4"
+            className="font-syne text-[clamp(2rem,6vw,3rem)] md:text-5xl font-bold text-text-primary mb-4"
           >
             What People Say
           </motion.h2>
@@ -50,7 +50,7 @@ export default function Testimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-[#F8F9FF] rounded-3xl p-8 md:p-10 flex flex-col h-full border border-accent/10"
+              className="bg-base rounded-3xl p-8 md:p-10 flex flex-col h-full border border-accent/10"
             >
               <div className="flex gap-1 mb-6">
                 {[...Array(5)].map((_, i) => (

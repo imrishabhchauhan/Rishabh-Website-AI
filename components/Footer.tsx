@@ -3,7 +3,7 @@ export default function Footer() {
     <footer className="bg-dark-bg text-white relative">
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-accent to-transparent opacity-50" />
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 py-12">
+      <div className="max-w-7xl mx-auto px-[20px] md:px-12 py-12">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="font-dm-sans text-sm text-white/60">
             © 2026 Rishabh Chauhan. Built with intent.

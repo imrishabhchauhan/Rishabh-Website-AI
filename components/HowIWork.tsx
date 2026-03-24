@@ -7,7 +7,7 @@ const steps = [
   {
     icon: "🔍",
     title: "Discover",
-    description: "Analyze the problem, the goal, and the gap. We make no assumptions."
+    description: "Analyze the problem, the goal, and the gap. No assumptions."
   },
   {
     icon: "🧠",
@@ -17,23 +17,23 @@ const steps = [
   {
     icon: "⚙️",
     title: "Build",
-    description: "Deploy the right stack for your needs, including AI, automation, or content systems."
+    description: "Deploy the right stack for your needs—AI, automation, or content systems."
   },
   {
     icon: "🧪",
     title: "Test & Refine",
-    description: "Break the system on purpose. We fix the weak points and optimize until it holds."
+    description: "Break the system on purpose. Fix the weak points and optimize until it holds."
   },
   {
     icon: "🚀",
     title: "Deliver",
-    description: "Hand off the final product with clear documentation. You get a clean, complete, and repeatable system."
+    description: "Hand off the final product with clear documentation. A clean, repeatable system."
   }
 ];
 
 export default function HowIWork() {
   return (
-    <section id="how-i-work" className="py-24 bg-[#F0F5FF]">
+    <section id="how-i-work" className="py-[60px] md:py-24 bg-base">
       <style dangerouslySetInnerHTML={{__html: `
         @keyframes dash-flow-x {
           from { stroke-dashoffset: 12; }
@@ -50,12 +50,12 @@ export default function HowIWork() {
           animation: dash-flow-y 0.5s linear infinite;
         }
       `}} />
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
+      <div className="max-w-7xl mx-auto px-[20px] md:px-12">
         <div className="mb-16 text-center lg:text-left">
-          <h2 className="font-syne text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="font-syne text-[clamp(2rem,6vw,3rem)] md:text-5xl font-bold text-text-primary mb-4">
             How I Work
           </h2>
-          <p className="text-xl text-gray-600 font-medium">
+          <p className="text-[clamp(1rem,4vw,1.25rem)] md:text-xl text-text-secondary font-medium">
             Every project follows a system. Here&apos;s mine.
           </p>
         </div>
@@ -69,11 +69,11 @@ export default function HowIWork() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: index * 0.15, duration: 0.5 }}
-                className="bg-white rounded-xl p-6 shadow-sm border-t-[3px] border-t-[#0066FF] hover:shadow-[0_0_20px_rgba(0,102,255,0.4)] transition-shadow duration-300 relative z-10 w-full lg:w-[200px] xl:w-[220px] flex-shrink-0 flex flex-col items-center lg:items-start text-center lg:text-left"
+                className="bg-surface rounded-xl p-6 shadow-sm border-t-[3px] border-t-[#0066FF] hover:shadow-[0_0_20px_rgba(0,102,255,0.4)] transition-shadow duration-300 relative z-10 w-full max-w-[320px] lg:max-w-none mx-auto lg:mx-0 lg:w-[200px] xl:w-[220px] flex-shrink-0 flex flex-col items-center lg:items-start text-center lg:text-left"
               >
                 <div className="text-4xl mb-4">{step.icon}</div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">{step.title}</h3>
-                <p className="text-sm text-gray-600 leading-relaxed">{step.description}</p>
+                <h3 className="text-lg font-bold text-text-primary mb-2">{step.title}</h3>
+                <p className="text-sm text-text-secondary leading-relaxed">{step.description}</p>
               </motion.div>
 
               {/* Connector */}
@@ -92,7 +92,7 @@ export default function HowIWork() {
                   </div>
 
                   {/* Mobile Connector */}
-                  <div className="lg:hidden h-10 w-[2px] relative my-2">
+                  <div className="lg:hidden h-[40px] w-[2px] relative my-0">
                     <svg className="w-6 h-full absolute left-1/2 -translate-x-1/2" preserveAspectRatio="none">
                       <line x1="12" y1="0" x2="12" y2="100%" stroke="#0066FF" strokeWidth="2" strokeDasharray="6,6" className="animate-dash-y" />
                     </svg>

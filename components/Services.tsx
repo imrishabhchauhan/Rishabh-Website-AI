@@ -49,15 +49,15 @@ export default function Services() {
   ];
 
   return (
-    <section id="services" className="py-24 md:py-32 bg-base">
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
+    <section id="services" className="py-[60px] md:py-32 bg-base">
+      <div className="max-w-7xl mx-auto px-[20px] md:px-12">
         <div className="mb-16 md:mb-24 text-center md:text-left">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.5 }}
-            className="font-syne text-4xl md:text-5xl font-bold text-text-primary mb-4"
+            className="font-syne text-[clamp(2rem,6vw,3rem)] md:text-5xl font-bold text-text-primary mb-4"
           >
             What I Do
           </motion.h2>
@@ -66,13 +66,13 @@ export default function Services() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-lg text-text-secondary font-dm-sans"
+            className="text-[clamp(1rem,4vw,1.125rem)] md:text-lg text-text-secondary font-dm-sans"
           >
             Three services. Each one built around a specific type of problem.
           </motion.p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <motion.div
               key={index}
@@ -105,11 +105,11 @@ export default function Services() {
                 <h4 className="font-jetbrains text-xs text-text-primary uppercase tracking-widest font-semibold mb-4">
                   Includes
                 </h4>
-                <ul className="space-y-3">
+                <ul className="space-y-3 pl-4 md:pl-0">
                   {service.includes.map((item, i) => (
                     <li
                       key={i}
-                      className="flex items-start gap-3 text-sm text-text-secondary font-dm-sans"
+                      className="flex items-start gap-3 text-sm text-text-secondary font-dm-sans break-words"
                     >
                       <CheckCircle2
                         size={18}
@@ -122,7 +122,7 @@ export default function Services() {
               </div>
 
               <div className="mt-auto pt-8 border-t border-border-subtle">
-                <div className="font-jetbrains text-lg font-bold text-text-primary mb-6">
+                <div className="font-jetbrains text-[clamp(1.2rem,4vw,1.5rem)] md:text-lg font-bold text-text-primary mb-6">
                   {service.price}
                 </div>
                 <button className="w-full flex items-center justify-center gap-2 bg-base border border-border-subtle group-hover:border-accent group-hover:bg-accent group-hover:text-white text-text-primary py-3 rounded-full font-medium transition-all duration-300">
