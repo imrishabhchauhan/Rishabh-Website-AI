@@ -14,6 +14,11 @@ service cloud.firestore {
     //   - resumeUrl: string (required, URL format)
     //   - servicePrices: map (optional)
     //   - status: string (required)
+    //   - socialLinks: map (optional)
+    //   - fontFamily: string (optional)
+    //   - showServices: bool (optional)
+    //   - showWork: bool (optional)
+    //   - showContact: bool (optional)
     //
     // Collection: projects
     // Document ID: auto-generated
@@ -25,7 +30,7 @@ service cloud.firestore {
     //   - tags: list (optional, max 10 items)
     //   - participants: string (optional)
     //   - featured: bool (optional)
-    //   - order: int (optional)
+    //   - createdAt: string (required, ISO 8601)
     //
     // Collection: stats
     // Document ID: storage
@@ -56,26 +61,38 @@ service cloud.firestore {
       return request.resource.data.keys().hasOnly(fields);
     }
 
+    function isValidDateString(dateStr) {
+      return dateStr is string &&
+        dateStr.matches("^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}.*Z?$");
+    }
+
     // ===============================================================
     // Domain Validators
     // ===============================================================
 
     function isValidSiteSettings(data) {
-      return hasOnlyAllowedFields(['accentColor', 'accentGlowColor', 'resumeUrl', 'servicePrices', 'status']) &&
+      return hasOnlyAllowedFields(['accentColor', 'accentGlowColor', 'resumeUrl', 'servicePrices', 'status', 'socialLinks', 'fontFamily', 'showServices', 'showWork', 'showContact']) &&
              data.accentColor is string && data.accentColor.matches("^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$") &&
              (!('accentGlowColor' in data) || (data.accentGlowColor is string && data.accentGlowColor.matches("^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"))) &&
              isValidUrl(data.resumeUrl) &&
-             data.status is string && data.status.size() < 100;
+             data.status is string && data.status.size() < 100 &&
+             (!('socialLinks' in data) || (data.socialLinks is map && data.socialLinks.size() <= 10)) &&
+             (!('fontFamily' in data) || (data.fontFamily is string && data.fontFamily.size() < 100)) &&
+             (!('showServices' in data) || data.showServices is bool) &&
+             (!('showWork' in data) || data.showWork is bool) &&
+             (!('showContact' in data) || data.showContact is bool);
     }
 
     function isValidProject(data) {
-      return hasOnlyAllowedFields(['title', 'category', 'description', 'imageUrl', 'tags', 'participants', 'featured', 'order']) &&
+      return hasOnlyAllowedFields(['title', 'category', 'description', 'imageUrl', 'tags', 'participants', 'featured', 'createdAt']) &&
              data.title is string && data.title.size() > 0 && data.title.size() <= 100 &&
              data.category is string && data.category.size() > 0 && data.category.size() <= 50 &&
              data.description is string && data.description.size() > 0 && data.description.size() <= 1000 &&
              isValidUrl(data.imageUrl) &&
+             isValidDateString(data.createdAt) &&
              (!('tags' in data) || (data.tags is list && data.tags.size() <= 10)) &&
-             (!('order' in data) || data.order is int);
+             (!('participants' in data) || (data.participants is string && data.participants.size() < 200)) &&
+             (!('featured' in data) || data.featured is bool);
     }
 
     function isValidStorageStats(data) {

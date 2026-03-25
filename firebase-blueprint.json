@@ -29,7 +29,20 @@
         "status": {
           "type": "string",
           "description": "Current availability status (e.g., 'Open to Work')."
-        }
+        },
+        "socialLinks": {
+          "type": "object",
+          "properties": {
+            "github": { "type": "string" },
+            "linkedin": { "type": "string" },
+            "twitter": { "type": "string" },
+            "instagram": { "type": "string" }
+          }
+        },
+        "fontFamily": { "type": "string" },
+        "showServices": { "type": "boolean" },
+        "showWork": { "type": "boolean" },
+        "showContact": { "type": "boolean" }
       },
       "required": ["accentColor", "resumeUrl", "status"]
     },
@@ -45,9 +58,9 @@
         "tags": { "type": "array", "items": { "type": "string" } },
         "participants": { "type": "string" },
         "featured": { "type": "boolean" },
-        "order": { "type": "integer" }
+        "createdAt": { "type": "string", "format": "date-time" }
       },
-      "required": ["title", "category", "description", "imageUrl"]
+      "required": ["title", "category", "description", "imageUrl", "createdAt"]
     },
     "StorageStats": {
       "title": "Storage Stats",
