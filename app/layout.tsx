@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Syne, DM_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { FirebaseProvider } from "@/components/FirebaseProvider";
 
 const syne = Syne({
   subsets: ["latin"],
@@ -36,7 +37,9 @@ export default function RootLayout({
         className="font-dm-sans antialiased bg-base text-text-primary selection:bg-accent selection:text-white"
         suppressHydrationWarning
       >
-        {children}
+        <FirebaseProvider>
+          {children}
+        </FirebaseProvider>
       </body>
     </html>
   );

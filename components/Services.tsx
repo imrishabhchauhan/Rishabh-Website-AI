@@ -2,10 +2,14 @@
 
 import { motion } from "motion/react";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { useFirebase } from "@/components/FirebaseProvider";
 
 export default function Services() {
+  const { settings } = useFirebase();
+  
   const services = [
     {
+      id: "aiWorkflow",
       title: "AI Workflow Development",
       description:
         "Custom N8N and Make workflows integrated with LLMs to replace repetitive human tasks.",
@@ -15,11 +19,12 @@ export default function Services() {
         "Build + deployment",
         "Documentation",
       ],
-      price: "₹15,000 / project",
+      price: settings?.servicePrices?.aiWorkflow ? `₹${settings.servicePrices.aiWorkflow} / project` : "₹15,000 / project",
       cta: "Get a Quote",
       popular: true,
     },
     {
+      id: "marketing",
       title: "Digital Marketing Consulting",
       description:
         "SEO, social media pipelines, and campaign architecture built to compound over time.",
@@ -29,11 +34,12 @@ export default function Services() {
         "Execution roadmap",
         "Monthly retainer option",
       ],
-      price: "₹8,000 / month",
+      price: settings?.servicePrices?.marketing ? `₹${settings.servicePrices.marketing} / month` : "₹8,000 / month",
       cta: "Book a Call",
       popular: false,
     },
     {
+      id: "content",
       title: "Content Strategy",
       description:
         "Content systems for founders, educators, and brands entering the AI space. We define your positioning and build a scalable content calendar.",
@@ -42,7 +48,7 @@ export default function Services() {
         "Content calendar",
         "LinkedIn + long-form strategy",
       ],
-      price: "₹5,000 / month",
+      price: settings?.servicePrices?.content ? `₹${settings.servicePrices.content} / month` : "₹5,000 / month",
       cta: "Start Today",
       popular: false,
     },

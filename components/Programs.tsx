@@ -1,69 +1,105 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import { db, collection, getDocs, OperationType, handleFirestoreError } from "@/firebase";
 
-const programs = [
-  {
-    id: 1,
-    title: "AI Tools Mastery Workshop",
-    category: "AI",
-    tags: ["AI", "Workshop", "200+ Participants"],
-    description: "Zoom-delivered training on Claude, Gemini, ChatGPT, and automation tools for working professionals.",
-    featured: true,
-    participants: "200+",
-  },
-  {
-    id: 2,
-    title: "Digital Marketing Bootcamp",
-    category: "Marketing",
-    tags: ["Marketing", "Bootcamp", "300+ Participants"],
-    description: "Intensive bootcamp covering SEO, content, and paid ads for marketing teams.",
-    featured: false,
-    participants: "300+",
-  },
-  {
-    id: 3,
-    title: "Web Development with AI",
-    category: "Web",
-    tags: ["Web Dev", "Training", "Live Sessions"],
-    description: "Live sessions on building websites using modern frameworks and AI-assisted development workflows.",
-    featured: false,
-    participants: "Live",
-  },
-  {
-    id: 4,
-    title: "Canva for Professionals",
-    category: "Design",
-    tags: ["Design", "Workshop", "Corporate"],
-    description: "Advanced Canva design training tailored for corporate marketing teams and educators.",
-    featured: false,
-    participants: "Corporate",
-  },
-  {
-    id: 5,
-    title: "N8N Automation Workshop",
-    category: "Automation",
-    tags: ["Automation", "N8N", "Advanced"],
-    description: "Hands-on workshop building real-world automation workflows and API integrations using N8N.",
-    featured: true,
-    participants: "Advanced",
-  },
-  {
-    id: 6,
-    title: "Cybersecurity Awareness Program",
-    category: "Security",
-    tags: ["Security", "Public", "1000+ Reached"],
-    description: "Public awareness sessions on cybercrime delivered in partnership with Chandigarh Police.",
-    featured: false,
-    participants: "1000+",
-  },
-];
+interface Program {
+  id: string;
+  title: string;
+  category: string;
+  tags: string[];
+  description: string;
+  featured: boolean;
+  participants: string;
+}
 
 const filters = ["All", "AI", "Marketing", "Web", "Design", "Automation", "Security"];
 
 export default function Programs() {
   const [activeFilter, setActiveFilter] = useState("All");
+  const [programs, setPrograms] = useState<Program[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchPrograms = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "projects"));
+        const fetchedPrograms = querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        })) as Program[];
+        
+        if (fetchedPrograms.length > 0) {
+          setPrograms(fetchedPrograms);
+        } else {
+          // Fallback to initial data if Firestore is empty
+          setPrograms([
+            {
+              id: "1",
+              title: "AI Tools Mastery Workshop",
+              category: "AI",
+              tags: ["AI", "Workshop", "200+ Participants"],
+              description: "Zoom-delivered training on Claude, Gemini, ChatGPT, and automation tools for working professionals.",
+              featured: true,
+              participants: "200+",
+            },
+            {
+              id: "2",
+              title: "Digital Marketing Bootcamp",
+              category: "Marketing",
+              tags: ["Marketing", "Bootcamp", "300+ Participants"],
+              description: "Intensive bootcamp covering SEO, content, and paid ads for marketing teams.",
+              featured: false,
+              participants: "300+",
+            },
+            {
+              id: "3",
+              title: "Web Development with AI",
+              category: "Web",
+              tags: ["Web Dev", "Training", "Live Sessions"],
+              description: "Live sessions on building websites using modern frameworks and AI-assisted development workflows.",
+              featured: false,
+              participants: "Live",
+            },
+            {
+              id: "4",
+              title: "Canva for Professionals",
+              category: "Design",
+              tags: ["Design", "Workshop", "Corporate"],
+              description: "Advanced Canva design training tailored for corporate marketing teams and educators.",
+              featured: false,
+              participants: "Corporate",
+            },
+            {
+              id: "5",
+              title: "N8N Automation Workshop",
+              category: "Automation",
+              tags: ["Automation", "N8N", "Advanced"],
+              description: "Hands-on workshop building real-world automation workflows and API integrations using N8N.",
+              featured: true,
+              participants: "Advanced",
+            },
+            {
+              id: "6",
+              title: "Cybersecurity Awareness Program",
+              category: "Security",
+              tags: ["Security", "Public", "1000+ Reached"],
+              description: "Public awareness sessions on cybercrime delivered in partnership with Chandigarh Police.",
+              featured: false,
+              participants: "1000+",
+            },
+          ]);
+        }
+      } catch (error) {
+        handleFirestoreError(error, OperationType.LIST, "projects");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPrograms();
+  }, []);
 
   const filteredPrograms = programs.filter(
     (program) => activeFilter === "All" || program.category === activeFilter
@@ -77,7 +113,7 @@ export default function Programs() {
             Programs I&apos;ve Delivered
           </h2>
           <p className="text-[clamp(1rem,4vw,1.25rem)] md:text-xl text-text-secondary font-medium">
-            1,000+ people trained across these six programs.
+            1,000+ people trained across these programs.
           </p>
         </div>
 
@@ -93,7 +129,7 @@ export default function Programs() {
                 onClick={() => setActiveFilter(filter)}
                 className={`whitespace-nowrap px-4 py-2 md:px-6 md:py-2 rounded-full font-dm-sans text-sm font-medium transition-all duration-300 flex-shrink-0 ${
                   activeFilter === filter
-                    ? "bg-[#0066FF] text-white shadow-md"
+                    ? "bg-accent text-white shadow-md"
                     : "bg-surface text-text-secondary hover:bg-border-subtle hover:text-text-primary border border-border-subtle"
                 }`}
               >
@@ -114,8 +150,7 @@ export default function Programs() {
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.3 }}
                 key={program.id}
-                data-featured={program.featured}
-                className="group relative bg-surface rounded-2xl p-8 shadow-sm border border-border-subtle transition-all duration-300 hover:-translate-y-[6px] hover:shadow-xl border-l-4 border-l-transparent hover:border-l-[#0066FF] flex flex-col h-full"
+                className="group relative bg-surface rounded-2xl p-8 shadow-sm border border-border-subtle transition-all duration-300 hover:-translate-y-[6px] hover:shadow-xl border-l-4 border-l-transparent hover:border-l-accent flex flex-col h-full"
               >
                 {/* Featured Badge */}
                 {program.featured && (
@@ -126,7 +161,7 @@ export default function Programs() {
 
                 {/* Top: Category Tag */}
                 <div className="mb-6">
-                  <span className="inline-block bg-[#0066FF] text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                  <span className="inline-block bg-accent text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
                     {program.category}
                   </span>
                 </div>
@@ -156,7 +191,7 @@ export default function Programs() {
                       {program.participants}
                     </span>
                   </div>
-                  <button className="font-dm-sans text-sm font-bold text-[#0066FF] border border-[#0066FF] px-4 py-2 rounded-lg hover:bg-[#0066FF] hover:text-white transition-colors duration-300">
+                  <button className="font-dm-sans text-sm font-bold text-accent border border-accent px-4 py-2 rounded-lg hover:bg-accent hover:text-white transition-colors duration-300">
                     View Details
                   </button>
                 </div>

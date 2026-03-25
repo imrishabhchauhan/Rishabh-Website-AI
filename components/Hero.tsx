@@ -4,8 +4,10 @@ import { motion, useScroll, useTransform } from "motion/react";
 import { ArrowDown } from "lucide-react";
 import Link from "next/link";
 import { useRef, useEffect, useState } from "react";
+import { useFirebase } from "@/components/FirebaseProvider";
 
 export default function Hero() {
+  const { settings } = useFirebase();
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -57,7 +59,7 @@ export default function Hero() {
           >
             <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
             <span className="font-jetbrains text-xs font-medium text-text-secondary uppercase tracking-wider">
-              AI Workflow Builder & Strategist
+              {settings?.status || "AI Workflow Builder & Strategist"}
             </span>
           </motion.div>
 
@@ -113,7 +115,7 @@ export default function Hero() {
               Let&apos;s Work Together
             </Link>
             <Link
-              href="#work"
+              href="#programs"
               className="w-full md:w-auto text-center bg-surface text-text-primary border border-border-subtle px-8 py-4 rounded-full font-medium hover:border-accent hover:text-accent transition-all hover:-translate-y-1"
             >
               View My Work
@@ -127,8 +129,9 @@ export default function Hero() {
             className="mt-3 md:mt-6 w-full md:w-auto"
           >
             <a
-              href="/Rishabh_Chauhan_Resume.pdf"
-              download
+              href={settings?.resumeUrl || "/Rishabh_Chauhan_Resume.pdf"}
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-full md:w-auto inline-flex justify-center items-center gap-2 px-8 py-4 rounded-full font-medium border-2 border-accent text-accent hover:bg-accent hover:text-white transition-all hover:-translate-y-1"
             >
               <ArrowDown size={20} />

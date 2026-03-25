@@ -45,8 +45,6 @@ export default function Navbar() {
     { name: "About", href: "#about" },
     { name: "Services", href: "#services" },
     { name: "Work", href: "#programs" },
-    { name: "Tools", href: "#tools" },
-    { name: "Blog", href: "#blog" },
     { name: "Resume", href: "/Rishabh_Chauhan_Resume.pdf", isDownload: true },
     { name: "Contact", href: "#contact" },
   ];
