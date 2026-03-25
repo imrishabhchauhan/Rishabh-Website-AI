@@ -13,6 +13,7 @@
   --font-syne: var(--font-syne);
   --font-dm-sans: var(--font-dm-sans);
   --font-jetbrains: var(--font-jetbrains-mono);
+  --font-main: var(--main-font, var(--font-dm-sans));
 }
 
 :root {
@@ -49,6 +50,7 @@ html, body {
 body {
   background-color: var(--background);
   color: var(--foreground);
+  font-family: var(--font-main);
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 

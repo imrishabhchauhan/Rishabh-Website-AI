@@ -1,4 +1,11 @@
+'use client';
+
+import { useFirebase } from "@/components/FirebaseProvider";
+
 export default function Footer() {
+  const { settings } = useFirebase();
+  const socialLinks = settings?.socialLinks || {};
+
   return (
     <footer className="bg-dark-bg text-white relative">
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-accent to-transparent opacity-50" />
@@ -10,26 +17,46 @@ export default function Footer() {
           </div>
 
           <div className="flex items-center gap-6">
-            <a
-              href="https://linkedin.com/in/rishabhchauhan25"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white/60 hover:text-white transition-colors font-jetbrains text-sm"
-            >
-              LinkedIn
-            </a>
-            <a
-              href="#"
-              className="text-white/60 hover:text-white transition-colors font-jetbrains text-sm"
-            >
-              GitHub
-            </a>
-            <a
-              href="#"
-              className="text-white/60 hover:text-white transition-colors font-jetbrains text-sm"
-            >
-              Twitter
-            </a>
+            {socialLinks.linkedin && (
+              <a
+                href={socialLinks.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/60 hover:text-white transition-colors font-jetbrains text-sm"
+              >
+                LinkedIn
+              </a>
+            )}
+            {socialLinks.github && (
+              <a
+                href={socialLinks.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/60 hover:text-white transition-colors font-jetbrains text-sm"
+              >
+                GitHub
+              </a>
+            )}
+            {socialLinks.twitter && (
+              <a
+                href={socialLinks.twitter}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/60 hover:text-white transition-colors font-jetbrains text-sm"
+              >
+                Twitter
+              </a>
+            )}
+            {socialLinks.instagram && (
+              <a
+                href={socialLinks.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/60 hover:text-white transition-colors font-jetbrains text-sm"
+              >
+                Instagram
+              </a>
+            )}
           </div>
 
           <div className="font-syne font-bold text-lg text-white">

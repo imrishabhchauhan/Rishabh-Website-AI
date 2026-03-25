@@ -61,7 +61,17 @@ export default function AdminSettings() {
       aiWorkflow: '15000',
       marketing: '8000',
       content: '5000'
-    }
+    },
+    socialLinks: {
+      github: '',
+      linkedin: '',
+      twitter: '',
+      instagram: ''
+    },
+    fontFamily: '--font-dm-sans',
+    showServices: true,
+    showWork: true,
+    showContact: true
   });
 
   // Projects State
@@ -78,7 +88,7 @@ export default function AdminSettings() {
 
   // Storage Stats
   const [totalBytes, setTotalBytes] = useState(0);
-  const [activeTab, setActiveTab] = useState<'appearance' | 'content' | 'pricing' | 'projects'>('appearance');
+  const [activeTab, setActiveTab] = useState<'appearance' | 'content' | 'pricing' | 'projects' | 'social'>('appearance');
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (u) => {

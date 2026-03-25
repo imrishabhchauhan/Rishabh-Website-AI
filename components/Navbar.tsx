@@ -2,14 +2,17 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Menu, X, Sun, Moon } from "lucide-react";
+import { Menu, X, Sun, Moon, User as UserIcon, Settings } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
+import { auth, onAuthStateChanged, User } from "@/firebase";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
     setMounted(true); // eslint-disable-line react-hooks/set-state-in-effect
@@ -17,6 +20,11 @@ export default function Navbar() {
       setIsScrolled(window.scrollY > 50);
     };
     window.addEventListener("scroll", handleScroll);
+
+    // Auth listener
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
 
     // Theme initialization
     const savedTheme = localStorage.getItem("theme") as "light" | "dark" | null;
@@ -26,7 +34,10 @@ export default function Navbar() {
       setTheme("dark");
     }
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      unsubscribe();
+    };
   }, []);
 
   useEffect(() => {
@@ -105,6 +116,40 @@ export default function Navbar() {
                 )}
               </button>
 
+              {mounted && user ? (
+                <Link
+                  href="/admin-settings"
+                  className="flex items-center gap-2 p-1 pl-1 pr-3 rounded-full bg-surface-secondary border border-border-subtle hover:border-accent transition-all group"
+                  title="Admin Settings"
+                >
+                  {user.photoURL ? (
+                    <Image 
+                      src={user.photoURL} 
+                      alt="Profile" 
+                      width={32}
+                      height={32}
+                      className="w-8 h-8 rounded-full object-cover border border-border-subtle group-hover:border-accent transition-colors"
+                      referrerPolicy="no-referrer"
+                    />
+                  ) : (
+                    <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center text-accent">
+                      <UserIcon size={16} />
+                    </div>
+                  )}
+                  <Settings size={14} className="text-text-secondary group-hover:text-accent transition-colors" />
+                </Link>
+              ) : (
+                mounted && (
+                  <Link
+                    href="/admin-settings"
+                    className="p-2 rounded-full hover:bg-border-subtle transition-colors text-text-secondary hover:text-accent"
+                    title="Login to Admin"
+                  >
+                    <UserIcon size={20} />
+                  </Link>
+                )
+              )}
+
               <Link
                 href="#contact"
                 className="bg-accent text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-accent-glow transition-colors shadow-[0_0_15px_rgba(0,102,255,0.3)] hover:shadow-[0_0_20px_rgba(59,130,246,0.5)]"
@@ -115,7 +160,7 @@ export default function Navbar() {
           </div>
 
           {/* Mobile Toggle */}
-          <div className="flex items-center gap-4 md:hidden">
+          <div className="flex items-center gap-3 md:hidden">
             <button
               onClick={toggleTheme}
               className="p-2 rounded-full hover:bg-border-subtle transition-colors text-text-secondary"
@@ -131,8 +176,31 @@ export default function Navbar() {
                 <div className="w-5 h-5" />
               )}
             </button>
+
+            {mounted && user && (
+              <Link
+                href="/admin-settings"
+                className="w-9 h-9 rounded-full overflow-hidden border border-border-subtle"
+              >
+                {user.photoURL ? (
+                  <Image 
+                    src={user.photoURL} 
+                    alt="Profile" 
+                    width={36}
+                    height={36}
+                    className="w-full h-full object-cover" 
+                    referrerPolicy="no-referrer"
+                  />
+                ) : (
+                  <div className="w-full h-full bg-accent/10 flex items-center justify-center text-accent">
+                    <UserIcon size={18} />
+                  </div>
+                )}
+              </Link>
+            )}
+
             <button
-              className="text-text-primary"
+              className="text-text-primary p-1"
               onClick={() => setIsMobileMenuOpen(true)}
             >
               <Menu size={24} />

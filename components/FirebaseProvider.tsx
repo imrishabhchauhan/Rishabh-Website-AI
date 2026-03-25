@@ -13,6 +13,16 @@ interface SiteSettings {
     content: string;
   };
   status: string;
+  socialLinks?: {
+    github?: string;
+    linkedin?: string;
+    twitter?: string;
+    instagram?: string;
+  };
+  fontFamily?: string;
+  showServices?: boolean;
+  showWork?: boolean;
+  showContact?: boolean;
 }
 
 interface FirebaseContextType {
@@ -46,6 +56,9 @@ export const FirebaseProvider = ({ children }: { children: React.ReactNode }) =>
           }
           if (data.accentGlowColor) {
             document.documentElement.style.setProperty('--accent-glow', data.accentGlowColor);
+          }
+          if (data.fontFamily) {
+            document.documentElement.style.setProperty('--main-font', data.fontFamily);
           }
         }
         setLoading(false);
